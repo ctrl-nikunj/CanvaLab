@@ -1,7 +1,7 @@
 import { Server, Socket } from 'socket.io'
-import { getRoom, removeUser } from './rooms'
-import { addStroke, appendPoints, undo, redo } from './drawingState'
-import { DrawOp } from './types'
+import { getRoom, removeUser } from './rooms.ts'
+import { addStroke, appendPoints, undo, redo } from './drawingState.ts'
+import type { DrawOp } from './types.ts'
 
 export function registerHandlers(io: Server, socket: Socket) {
     let roomId = ''

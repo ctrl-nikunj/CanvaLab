@@ -1,4 +1,4 @@
-import { CanvasState, DrawOp } from './types'
+import type { CanvasState, DrawOp } from './types.ts'
 
 export function addStroke(state: CanvasState, stroke: DrawOp) {
     state.ops.push(stroke)
