@@ -21,6 +21,8 @@ export function registerHandlers(io: Server, socket: Socket) {
             undone: Array.from(roomState.canvas.undone)
         })
 
+        socket.emit('room:users', Array.from(roomState.users))
+
         socket.to(roomId).emit('user:join', userId)
     })
 
@@ -38,6 +40,10 @@ export function registerHandlers(io: Server, socket: Socket) {
 
     socket.on('stroke:end', ({ strokeId }) => {
         socket.to(roomId).emit('stroke:end', { strokeId })
+    })
+
+    socket.on('cursor:move', (pos: { x: number; y: number }) => {
+        socket.to(roomId).emit('cursor:move', { userId, ...pos })
     })
 
     socket.on('op:undo', () => {
